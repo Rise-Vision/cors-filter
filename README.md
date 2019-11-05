@@ -115,25 +115,6 @@ mvn verify
 
 ```
 
-* Configure the filter on the web.xml of your project. It accepts a list of api names which are the API class names. 
-
-```xml
-    
-<filter>
-    <filter-name>CorsFilter</filter-name>
-    <filter-class>com.risevision.cors.filter.CorsFilter</filter-class>
-    <init-param>
-        <param-name>apis</param-name>
-        <param-value>API_1_CLASS_NAME, API_2_CLASS_NAME</param-value>
-    </init-param>
-</filter>
-<filter-mapping>
-    <filter-name>CorsFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-</filter-mapping>
-
-```
-
 * You may need to update the dependency list in your project
 ```
 mvn clean test -U
