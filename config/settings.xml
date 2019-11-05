@@ -14,7 +14,7 @@
                 <httpHeaders>
                     <property>
                         <name>Authorization</name>
-                        <value>token ${env.GITHUB_TOKEN}</value>
+                        <value>Bearer ${env.GITHUB_TOKEN}</value>
                     </property>
                 </httpHeaders>
             </configuration>
@@ -26,7 +26,7 @@
                 <httpHeaders>
                     <property>
                         <name>Authorization</name>
-                        <value>token ${env.GITHUB_TOKEN}</value>
+                        <value>Bearer ${env.GITHUB_TOKEN}</value>
                     </property>
                 </httpHeaders>
             </configuration>
