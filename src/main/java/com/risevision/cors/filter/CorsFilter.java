@@ -39,7 +39,7 @@ public class CorsFilter implements Filter {
       String origin = request.getHeader(ORIGIN);
 
       if (origin != null) {
-        logger.log(Level.INFO, "CORS origin: %s", origin);
+        logger.log(Level.INFO, "CORS origin: {0}", origin);
       }
 
       filterChain.doFilter(servletRequest, servletResponse);
