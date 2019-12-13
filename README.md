@@ -119,3 +119,83 @@ mvn verify
 ```
 mvn clean test -U
 ```
+
+* Add the filter to your WEB-INF/web.xml file, and map the URLs that should point to it:
+
+```xml
+  <filter>
+    <filter-name>CorsFilter</filter-name>
+    <filter-class>com.risevision.cors.filter.CorsFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>CorsFilter</filter-name>
+    <url-pattern>/checkThirdPartyCookie</url-pattern>
+    <url-pattern>/createThirdPartyCookie</url-pattern>
+  </filter-mapping>
+```
+
+In this basic configuration, the filter just logs the origin header of a request, 
+if there is any, but does not add any HTTP header to the response.
+
+In order to set the origin header as the CORS `Access-Control-Allow-Origin`  
+value, a list of valid origins should be set using the `allow-origins` init
+parameter, for example:
+
+```xml
+  <filter>
+    <filter-name>CorsFilter</filter-name>
+    <filter-class>com.risevision.cors.filter.CorsFilter</filter-class>
+    <init-param>
+      <param-name>allow-origins</param-name>
+      <param-value>
+        *.risevision.com
+        rvauser.appspot.com
+        *rvauser2.appspot.com
+      </param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>CorsFilter</filter-name>
+    <url-pattern>/checkThirdPartyCookie</url-pattern>
+    <url-pattern>/createThirdPartyCookie</url-pattern>
+  </filter-mapping>
+```
+
+URLs such as 'rvauser.appspot.com' are exact HTTP or HTTPS matches;
+while URLs that start with '*' such as '*.risevision.com' can match any HTTP 
+or HTTPS requests coming from any risevision.com origin ( apps.risevision.com,
+store.risevision.com, apps-stage-10.risevision.com, etc. ).
+
+The filter also allow to optionally set fixed values for
+ `Access-Control-Allow-Methods` and `Access-Control-Allow-Credentials`,
+ for example:
+ 
+ 
+```xml
+  <filter>
+    <filter-name>CorsFilter</filter-name>
+    <filter-class>com.risevision.cors.filter.CorsFilter</filter-class>
+    <init-param>
+      <param-name>allow-origins</param-name>
+      <param-value>
+        *.risevision.com
+        rvauser.appspot.com
+        *rvauser2.appspot.com
+      </param-value>
+    </init-param>
+    <init-param>
+      <param-name>Access-Control-Allow-Methods</param-name>
+      <param-value>GET</param-value>
+    </init-param>
+    <init-param>
+      <param-name>Access-Control-Allow-Credentials</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>CorsFilter</filter-name>
+    <url-pattern>/checkThirdPartyCookie</url-pattern>
+    <url-pattern>/createThirdPartyCookie</url-pattern>
+  </filter-mapping>
+```
+
