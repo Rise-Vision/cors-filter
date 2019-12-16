@@ -30,15 +30,14 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Level;
 
-
 public class CorsFilterTest {
 
   private static final Predicate<UrlMatcher> MATCHES_APPS =
     matcher -> matcher.test("https://apps.risevision.com");
-    private static final Predicate<UrlMatcher> MATCHES_APPS_STAGE =
-        matcher -> matcher.test("https://apps-stage-7.risevision.com");
+  private static final Predicate<UrlMatcher> MATCHES_APPS_STAGE =
+    matcher -> matcher.test("https://apps-stage-7.risevision.com");
   private static final Predicate<UrlMatcher> MATCHES_RVA_USER =
-      matcher -> matcher.test("https://rvauser.risevision.com");
+    matcher -> matcher.test("https://rvauser.risevision.com");
   private static final Predicate<UrlMatcher> MATCHES_RVA_USER2 =
     matcher -> matcher.test("https://rvauser2.appspot.com");
   private static final Predicate<UrlMatcher> MATCHES_RVA_USER2_TEST =
